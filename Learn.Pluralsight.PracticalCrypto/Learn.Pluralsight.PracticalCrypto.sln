@@ -1,0 +1,100 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RandomNumbers", "2-practical-cryptography-dotnet-m2-exercise-files\RandomNumbers\RandomNumbers.csproj", "{4AEF7669-B284-4A46-B9DD-75D8DCB02C53}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hash", "3-practical-cryptography-dotnet-m3-exercise-files\Hash\Hash.csproj", "{9B337E91-BA50-4751-94CE-0A425C6B22F3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HMAC", "3-practical-cryptography-dotnet-m3-exercise-files\HMAC\HMAC.csproj", "{8AB3AE8E-3944-4B69-A2CE-91D1C5C93A2E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HashPasswords", "4-practical-cryptography-dotnet-m4-exercise-files\4 - HashPasswords\HashPasswords.csproj", "{183AC585-9534-4EB4-BB3A-0D3258A998CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PBKDF2", "4-practical-cryptography-dotnet-m4-exercise-files\4 - PBKDF\PBKDF2.csproj", "{0578447F-E3FC-48E7-AA3D-DC0E6410E022}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AES", "5-practical-cryptography-dotnet-m5-exercise-files\AES\AES.csproj", "{29118C72-A1B4-4528-ABDE-8AB146946DCC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DES", "5-practical-cryptography-dotnet-m5-exercise-files\DES\DES.csproj", "{219C7799-FBB7-4FDC-8D7F-A8FC26AC86EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TripleDES", "5-practical-cryptography-dotnet-m5-exercise-files\TripleDES\TripleDES.csproj", "{B8378A04-E4C6-4BD9-B331-CE86A1002B13}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RSA", "6-practical-cryptography-dotnet-m6-exercise-files\RSA.csproj", "{BAEE0F62-B231-43F4-AE12-9786FF0E666D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hybrid", "7-practical-cryptography-dotnet-m7-exercise-files\Hybrid\Hybrid.csproj", "{6DAFB4AA-AB90-41FB-A7FC-B439297B56E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HybridWithIntegrity", "7-practical-cryptography-dotnet-m7-exercise-files\HybridWithIntegrity\HybridWithIntegrity.csproj", "{F08B9091-B58E-4BA6-962E-2A02D6ED740F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitalSignature", "8-practical-cryptography-dotnet-m8-exercise-files\DigitalSignature\DigitalSignature.csproj", "{A0EA1671-BF97-4A7A-AD76-A6FC96D8838F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HybridWithIntegrityAndSignature", "8-practical-cryptography-dotnet-m8-exercise-files\HybridWithIntegrityAndSignature\HybridWithIntegrityAndSignature.csproj", "{A918A104-8F72-4CED-88E8-553A66183889}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecureString", "9-practical-cryptography-dotnet-m9-exercise-files\SecureString.csproj", "{300572BD-FC3C-44D7-891D-58D35133755B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4AEF7669-B284-4A46-B9DD-75D8DCB02C53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AEF7669-B284-4A46-B9DD-75D8DCB02C53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AEF7669-B284-4A46-B9DD-75D8DCB02C53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AEF7669-B284-4A46-B9DD-75D8DCB02C53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B337E91-BA50-4751-94CE-0A425C6B22F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B337E91-BA50-4751-94CE-0A425C6B22F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B337E91-BA50-4751-94CE-0A425C6B22F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B337E91-BA50-4751-94CE-0A425C6B22F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AB3AE8E-3944-4B69-A2CE-91D1C5C93A2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AB3AE8E-3944-4B69-A2CE-91D1C5C93A2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AB3AE8E-3944-4B69-A2CE-91D1C5C93A2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AB3AE8E-3944-4B69-A2CE-91D1C5C93A2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{183AC585-9534-4EB4-BB3A-0D3258A998CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{183AC585-9534-4EB4-BB3A-0D3258A998CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{183AC585-9534-4EB4-BB3A-0D3258A998CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{183AC585-9534-4EB4-BB3A-0D3258A998CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0578447F-E3FC-48E7-AA3D-DC0E6410E022}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0578447F-E3FC-48E7-AA3D-DC0E6410E022}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0578447F-E3FC-48E7-AA3D-DC0E6410E022}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0578447F-E3FC-48E7-AA3D-DC0E6410E022}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29118C72-A1B4-4528-ABDE-8AB146946DCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29118C72-A1B4-4528-ABDE-8AB146946DCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29118C72-A1B4-4528-ABDE-8AB146946DCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29118C72-A1B4-4528-ABDE-8AB146946DCC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{219C7799-FBB7-4FDC-8D7F-A8FC26AC86EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{219C7799-FBB7-4FDC-8D7F-A8FC26AC86EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{219C7799-FBB7-4FDC-8D7F-A8FC26AC86EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{219C7799-FBB7-4FDC-8D7F-A8FC26AC86EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8378A04-E4C6-4BD9-B331-CE86A1002B13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8378A04-E4C6-4BD9-B331-CE86A1002B13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8378A04-E4C6-4BD9-B331-CE86A1002B13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8378A04-E4C6-4BD9-B331-CE86A1002B13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BAEE0F62-B231-43F4-AE12-9786FF0E666D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAEE0F62-B231-43F4-AE12-9786FF0E666D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAEE0F62-B231-43F4-AE12-9786FF0E666D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAEE0F62-B231-43F4-AE12-9786FF0E666D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DAFB4AA-AB90-41FB-A7FC-B439297B56E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DAFB4AA-AB90-41FB-A7FC-B439297B56E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DAFB4AA-AB90-41FB-A7FC-B439297B56E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DAFB4AA-AB90-41FB-A7FC-B439297B56E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F08B9091-B58E-4BA6-962E-2A02D6ED740F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F08B9091-B58E-4BA6-962E-2A02D6ED740F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F08B9091-B58E-4BA6-962E-2A02D6ED740F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F08B9091-B58E-4BA6-962E-2A02D6ED740F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0EA1671-BF97-4A7A-AD76-A6FC96D8838F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0EA1671-BF97-4A7A-AD76-A6FC96D8838F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0EA1671-BF97-4A7A-AD76-A6FC96D8838F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0EA1671-BF97-4A7A-AD76-A6FC96D8838F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A918A104-8F72-4CED-88E8-553A66183889}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A918A104-8F72-4CED-88E8-553A66183889}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A918A104-8F72-4CED-88E8-553A66183889}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A918A104-8F72-4CED-88E8-553A66183889}.Release|Any CPU.Build.0 = Release|Any CPU
+		{300572BD-FC3C-44D7-891D-58D35133755B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{300572BD-FC3C-44D7-891D-58D35133755B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{300572BD-FC3C-44D7-891D-58D35133755B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{300572BD-FC3C-44D7-891D-58D35133755B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
