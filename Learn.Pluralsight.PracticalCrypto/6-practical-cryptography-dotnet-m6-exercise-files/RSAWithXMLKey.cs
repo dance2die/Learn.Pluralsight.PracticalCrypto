@@ -1,72 +1,67 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using System.IO;
+﻿using System.IO;
 using System.Security.Cryptography;
 
 namespace CryptographyInDotNet
 {
-    public class RsaWithXmlKey 
-    {
-        public void AssignNewKey(string publicKeyPath, string privateKeyPath)
-        {
-            using (var rsa = new RSACryptoServiceProvider(2048))
-            {
-                rsa.PersistKeyInCsp = false;
+	public class RsaWithXmlKey
+	{
+		//private const int KEY_SIZE = 2048;
+		private const int KEY_SIZE = 4096;
 
-                if (File.Exists(privateKeyPath))
-                {
-                    File.Delete(privateKeyPath);
-                }
+		public void AssignNewKey(string publicKeyPath, string privateKeyPath)
+		{
+			using (var rsa = new RSACryptoServiceProvider(KEY_SIZE))
+			{
+				rsa.PersistKeyInCsp = false;
 
-                if (File.Exists(publicKeyPath))
-                {
-                    File.Delete(publicKeyPath);
-                }
+				if (File.Exists(privateKeyPath))
+					File.Delete(privateKeyPath);
 
-                var publicKeyfolder = Path.GetDirectoryName(publicKeyPath);
-                var privateKeyfolder = Path.GetDirectoryName(privateKeyPath);
+				if (File.Exists(publicKeyPath))
+					File.Delete(publicKeyPath);
 
-                if (!Directory.Exists(publicKeyfolder))
-                {
-                    Directory.CreateDirectory(publicKeyfolder);
-                }
+				var publicKeyfolder = Path.GetDirectoryName(publicKeyPath);
+				var privateKeyfolder = Path.GetDirectoryName(privateKeyPath);
 
-                if (!Directory.Exists(privateKeyfolder))
-                {
-                    Directory.CreateDirectory(privateKeyfolder);
-                }
-           
-                File.WriteAllText(publicKeyPath, rsa.ToXmlString(false));
-                File.WriteAllText(privateKeyPath, rsa.ToXmlString(true));
-            }
-        }
+				if (!Directory.Exists(publicKeyfolder))
+					Directory.CreateDirectory(publicKeyfolder);
 
-        public byte[] EncryptData(string publicKeyPath, byte[] dataToEncrypt)
-        {
-            byte[] cipherbytes;
+				if (!Directory.Exists(privateKeyfolder))
+					Directory.CreateDirectory(privateKeyfolder);
 
-            using (var rsa = new RSACryptoServiceProvider(2048))
-            {
-                rsa.PersistKeyInCsp = false;                
-                rsa.FromXmlString(File.ReadAllText(publicKeyPath));
+				File.WriteAllText(publicKeyPath, rsa.ToXmlString(false));
+				File.WriteAllText(privateKeyPath, rsa.ToXmlString(true));
+			}
+		}
 
-                cipherbytes = rsa.Encrypt(dataToEncrypt, false);
-            }
+		public byte[] EncryptData(string publicKeyPath, byte[] dataToEncrypt)
+		{
+			byte[] cipherbytes;
 
-            return cipherbytes;
-        }
+			using (var rsa = new RSACryptoServiceProvider(KEY_SIZE))
+			{
+				rsa.PersistKeyInCsp = false;
+				rsa.FromXmlString(File.ReadAllText(publicKeyPath));
 
-        public byte[] DecryptData(string privateKeyPath, byte[] dataToEncrypt)
-        {
-            byte[] plain;
+				cipherbytes = rsa.Encrypt(dataToEncrypt, false);
+			}
 
-            using (var rsa = new RSACryptoServiceProvider(2048))
-            {
-                rsa.PersistKeyInCsp = false;                
-                rsa.FromXmlString(File.ReadAllText(privateKeyPath));
-                plain = rsa.Decrypt(dataToEncrypt, false);
-            }
+			return cipherbytes;
+		}
 
-            return plain;
-        }
-    }
+		public byte[] DecryptData(string privateKeyPath, byte[] dataToEncrypt)
+		{
+			byte[] plain;
+
+			using (var rsa = new RSACryptoServiceProvider(KEY_SIZE))
+			{
+				rsa.PersistKeyInCsp = false;
+				rsa.FromXmlString(File.ReadAllText(privateKeyPath));
+
+				plain = rsa.Decrypt(dataToEncrypt, false);
+			}
+
+			return plain;
+		}
+	}
 }

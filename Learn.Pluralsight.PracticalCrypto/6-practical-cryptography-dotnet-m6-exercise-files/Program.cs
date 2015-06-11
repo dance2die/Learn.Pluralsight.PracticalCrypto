@@ -7,8 +7,8 @@ namespace CryptographyInDotNet
     {
         static void Main()
         {
-           RsaWithRsaParameterKey();
-           // RsaWithXml();
+		   //RsaWithRsaParameterKey();
+		   RsaWithXml();
 			//RsaWithCsp();
                      
             Console.ReadLine();
