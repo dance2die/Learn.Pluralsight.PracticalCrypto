@@ -2,54 +2,57 @@
 
 namespace CryptographyInDotNet
 {
-    public class RsaWithCspKey 
-    {
-        const string ContainerName = "MyContainer";
+	public class RsaWithCspKey
+	{
+		private const int KEY_SIZE = 2048;
+		private const string CONTAINER_NAME = "MyContainer";
 
-        public void AssignNewKey()
-        {
-            CspParameters cspParams = new CspParameters(1);
-            cspParams.KeyContainerName = ContainerName;
-            cspParams.Flags = CspProviderFlags.UseMachineKeyStore;
-            cspParams.ProviderName = "Microsoft Strong Cryptographic Provider";
+		public void AssignNewKey()
+		{
+			CspParameters cspParams = new CspParameters(1)
+			{
+				KeyContainerName = CONTAINER_NAME,
+				Flags = CspProviderFlags.UseMachineKeyStore,
+				ProviderName = "Microsoft Strong Cryptographic Provider"
+			};
 
-            var rsa = new RSACryptoServiceProvider(cspParams) { PersistKeyInCsp = true };
-        }
+			//var rsa = new RSACryptoServiceProvider(cspParams) { PersistKeyInCsp = true };
+			// ReSharper disable once ObjectCreationAsStatement
+			new RSACryptoServiceProvider(cspParams) { PersistKeyInCsp = true };
+		}
 
-        public void DeleteKeyInCsp()
-        {
-            var cspParams = new CspParameters { KeyContainerName = ContainerName };
-            var rsa = new RSACryptoServiceProvider(cspParams) { PersistKeyInCsp = false };
+		public byte[] EncryptData(byte[] dataToEncrypt)
+		{
+			byte[] cipherbytes;
 
-            rsa.Clear();                         
-        }
+			var cspParams = new CspParameters { KeyContainerName = CONTAINER_NAME };
+			using (var rsa = new RSACryptoServiceProvider(KEY_SIZE, cspParams))
+			{
+				cipherbytes = rsa.Encrypt(dataToEncrypt, false);
+			}
 
-        public byte[] EncryptData(byte[] dataToEncrypt)
-        {
-            byte[] cipherbytes;
+			return cipherbytes;
+		}
 
-            var cspParams = new CspParameters { KeyContainerName = ContainerName };
+		public byte[] DecryptData(byte[] dataToDecrypt)
+		{
+			byte[] plain;
 
-            using (var rsa = new RSACryptoServiceProvider(2048, cspParams))
-            {
-                cipherbytes = rsa.Encrypt(dataToEncrypt, false);
-            }
+			var cspParams = new CspParameters { KeyContainerName = CONTAINER_NAME };
+			using (var rsa = new RSACryptoServiceProvider(KEY_SIZE, cspParams))
+			{
+				plain = rsa.Decrypt(dataToDecrypt, false);
+			}
 
-            return cipherbytes;
-        }
+			return plain;
+		}
 
-        public byte[] DecryptData(byte[] dataToDecrypt)
-        {
-            byte[] plain;
+		public void DeleteKeyInCsp()
+		{
+			var cspParams = new CspParameters { KeyContainerName = CONTAINER_NAME };
+			var rsa = new RSACryptoServiceProvider(cspParams) { PersistKeyInCsp = false };
 
-            var cspParams = new CspParameters { KeyContainerName = ContainerName };
-
-            using (var rsa = new RSACryptoServiceProvider(2048, cspParams))
-            {                               
-                plain = rsa.Decrypt(dataToDecrypt, false);
-            }
-
-            return plain;
-        }
-    }
+			rsa.Clear();
+		}
+	}
 }
