@@ -4,13 +4,16 @@
     {
         private readonly AesEncryption _aes = new AesEncryption();
 
+	    private const int SESSION_KEY_RANDOM_NUMBER_COUNT = 32;
+	    private const int PACKET_RANDOM_NUMBER_COUNT = 16;
+
         public EncryptedPacket EncryptData(byte[] original,  RsaWithRsaParameterKey rsaParams)
         {
             // Generate our session key.
-            var sessionKey = _aes.GenerateRandomNumber(32);
+			var sessionKey = _aes.GenerateRandomNumber(SESSION_KEY_RANDOM_NUMBER_COUNT);
 
             // Create the encrypted packet and generate the IV.
-            var encryptedPacket = new EncryptedPacket { Iv = _aes.GenerateRandomNumber(16) };
+			var encryptedPacket = new EncryptedPacket { Iv = _aes.GenerateRandomNumber(PACKET_RANDOM_NUMBER_COUNT) };
 
             // Encrypt our data with AES.
             encryptedPacket.EncryptedData = _aes.Encrypt(original, sessionKey, encryptedPacket.Iv);
