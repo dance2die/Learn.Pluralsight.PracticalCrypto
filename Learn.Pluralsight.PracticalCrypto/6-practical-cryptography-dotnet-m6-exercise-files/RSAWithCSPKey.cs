@@ -5,7 +5,7 @@ namespace CryptographyInDotNet
 	public class RsaWithCspKey
 	{
 		private const int KEY_SIZE = 2048;
-		private const string CONTAINER_NAME = "MyContainer";
+		private const string CONTAINER_NAME = "ContainerName";
 
 		public void AssignNewKey()
 		{
