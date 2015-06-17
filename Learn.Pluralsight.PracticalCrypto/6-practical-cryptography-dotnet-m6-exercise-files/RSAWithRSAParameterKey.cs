@@ -4,8 +4,8 @@ namespace CryptographyInDotNet
 {
 	public class RSAWithRSAParameterKey
 	{
-		//private const int KEY_SIZE = 2048;
-		private const int KEY_SIZE = 4096;
+		private const int KEY_SIZE = 2048;
+		//private const int KEY_SIZE = 4096;
 
 		private RSAParameters _publicKey;
 		private RSAParameters _privateKey;
