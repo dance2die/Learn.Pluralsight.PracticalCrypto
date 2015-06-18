@@ -23,28 +23,20 @@ namespace CryptographyInDotNet
 
 		public byte[] EncryptData(byte[] dataToEncrypt)
 		{
-			byte[] cipherbytes;
-
 			var cspParams = new CspParameters { KeyContainerName = CONTAINER_NAME };
 			using (var rsa = new RSACryptoServiceProvider(KEY_SIZE, cspParams))
 			{
-				cipherbytes = rsa.Encrypt(dataToEncrypt, false);
+				return rsa.Encrypt(dataToEncrypt, false);
 			}
-
-			return cipherbytes;
 		}
 
 		public byte[] DecryptData(byte[] dataToDecrypt)
 		{
-			byte[] plain;
-
 			var cspParams = new CspParameters { KeyContainerName = CONTAINER_NAME };
 			using (var rsa = new RSACryptoServiceProvider(KEY_SIZE, cspParams))
 			{
-				plain = rsa.Decrypt(dataToDecrypt, false);
+				return rsa.Decrypt(dataToDecrypt, false);
 			}
-
-			return plain;
 		}
 
 		public void DeleteKeyInCsp()
