@@ -2,87 +2,72 @@
 
 namespace CryptographyInDotNet
 {
-    public class HybridEncryption
-    {
-        private readonly AesEncryption _aes = new AesEncryption();
+	public class HybridEncryption
+	{
+		private readonly AesEncryption _aes = new AesEncryption();
 
-        public EncryptedPacket EncryptData(byte[] original, RSAWithRSAParameterKey rsaParams, 
-                                           DigitalSignature digitalSignature)
-        {            
-            var sessionKey = _aes.GenerateRandomNumber(32);
-            
-            var encryptedPacket = new EncryptedPacket { Iv = _aes.GenerateRandomNumber(16) };
-                        
-            encryptedPacket.EncryptedData = _aes.Encrypt(original, sessionKey, encryptedPacket.Iv);
-            
-            encryptedPacket.EncryptedSessionKey = rsaParams.EncryptData(sessionKey);          
-            
-            using (var hmac = new HMACSHA256(sessionKey))
-            {
-                encryptedPacket.Hmac = hmac.ComputeHash(encryptedPacket.EncryptedData);
-            }
-            
-            encryptedPacket.Signature = digitalSignature.SignData(encryptedPacket.Hmac);
+		public EncryptedPacket EncryptData(
+			byte[] original, RSAWithRSAParameterKey rsaParams, DigitalSignature digitalSignature)
+		{
+			const int sessionKeyLength = 32;
+			const int ivLength = 16;
 
-            return encryptedPacket;
-        }
+			byte[] sessionKey = _aes.GenerateRandomNumber(sessionKeyLength);
+			EncryptedPacket encryptedPacket = new EncryptedPacket { Iv = _aes.GenerateRandomNumber(ivLength) };
+			encryptedPacket.EncryptedData = _aes.Encrypt(original, sessionKey, encryptedPacket.Iv);
+			encryptedPacket.EncryptedSessionKey = rsaParams.EncryptData(sessionKey);
 
-        public byte[] DecryptData(EncryptedPacket encryptedPacket, RSAWithRSAParameterKey rsaParams, 
-                                  DigitalSignature digitalSignature)
-        {            
-            var decryptedSessionKey = rsaParams.DecryptData(encryptedPacket.EncryptedSessionKey);
-            
-            using (var hmac = new HMACSHA256(decryptedSessionKey))
-            {                
-                var hmacToCheck = hmac.ComputeHash(encryptedPacket.EncryptedData);
-                
-                if (!Compare(encryptedPacket.Hmac, hmacToCheck)){
-                    throw new CryptographicException(
-                        "HMAC for decryption does not match encrypted packet.");
-                }
-                
-                if (!digitalSignature.VerifySignature(encryptedPacket.Hmac, 
-                                                      encryptedPacket.Signature)){
-                    throw new CryptographicException(
-                        "Digital Signature can not be verified.");
-                }
-            }
+			using (var hmac = new HMACSHA256(sessionKey))
+			{
+				encryptedPacket.Hmac = hmac.ComputeHash(encryptedPacket.EncryptedData);
+			}
+			encryptedPacket.Signature = digitalSignature.SignData(encryptedPacket.Hmac);
 
-            var decryptedData = _aes.Decrypt(encryptedPacket.EncryptedData, decryptedSessionKey, 
-                                             encryptedPacket.Iv);
+			return encryptedPacket;
+		}
 
-            return decryptedData;
-        }
+		public byte[] DecryptData(
+			EncryptedPacket encryptedPacket, RSAWithRSAParameterKey rsaParams, DigitalSignature digitalSignature)
+		{
+			var decryptedSessionKey = rsaParams.DecryptData(encryptedPacket.EncryptedSessionKey);
+			using (var hmac = new HMACSHA256(decryptedSessionKey))
+			{
+				var hmacToCheck = hmac.ComputeHash(encryptedPacket.EncryptedData);
+				if (!Compare(encryptedPacket.Hmac, hmacToCheck))
+					throw new CryptographicException("HMAC for decryption does not match encrypted packet.");
 
-        private static bool Compare(byte[] array1, byte[] array2)
-        {
-            var result = array1.Length == array2.Length;
+				if (!digitalSignature.VerifySignature(encryptedPacket.Hmac, encryptedPacket.Signature))
+					throw new CryptographicException("Digital Signature can not be verified.");
+			}
 
-            for (var i = 0; i < array1.Length && i < array2.Length; ++i)
-            {
-                result &= array1[i] == array2[i];
-            }
+			var decryptedData = 
+				_aes.Decrypt(encryptedPacket.EncryptedData, decryptedSessionKey, encryptedPacket.Iv);
 
-            return result;
-        }
+			return decryptedData;
+		}
 
-        private static bool CompareUnSecure(byte[] array1, byte[] array2)
-        {
-            if (array1.Length != array2.Length)
-            {
-                return false;
-            }
+		private static bool Compare(byte[] array1, byte[] array2)
+		{
+			var result = array1.Length == array2.Length;
+			for (var i = 0; i < array1.Length && i < array2.Length; ++i)
+			{
+				result &= array1[i] == array2[i];
+			}
+			return result;
+		}
 
-            for (int i = 0; i < array1.Length; ++i)
-            {
-                if (array1[i] != array2[i])
-                {
-                    return false;
-                }
-            }
+		private static bool CompareUnSecure(byte[] array1, byte[] array2)
+		{
+			if (array1.Length != array2.Length) return false;
 
-            return true;
-        }
+			for (int i = 0; i < array1.Length; ++i)
+			{
+				if (array1[i] != array2[i])
+					return false;
+			}
 
-    }
+			return true;
+		}
+
+	}
 }
