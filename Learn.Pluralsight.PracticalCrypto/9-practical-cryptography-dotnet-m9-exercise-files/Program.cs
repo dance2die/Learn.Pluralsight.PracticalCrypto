@@ -9,9 +9,7 @@ namespace SecureStringExample
         static void Main()
         {
             var str = ToSecureString(new[] { '5', '1', '2', '5' });
-
             char [] charArray = CharacterData(str);
-
             string unsecure = ConvertToUnsecureString(str);
         }
 
@@ -55,12 +53,10 @@ namespace SecureStringExample
 
         private static string ConvertToUnsecureString(SecureString securePassword)
         {
-            if (securePassword == null)
-            {
-                throw new ArgumentNullException("securePassword");
-            }
+	        if (securePassword == null)
+		        throw new ArgumentNullException("securePassword");
 
-            var unmanagedString = IntPtr.Zero;
+	        var unmanagedString = IntPtr.Zero;
 
             try
             {
