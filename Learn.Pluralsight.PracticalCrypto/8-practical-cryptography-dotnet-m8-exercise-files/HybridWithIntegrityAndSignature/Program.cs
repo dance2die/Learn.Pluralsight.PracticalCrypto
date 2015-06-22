@@ -24,8 +24,8 @@ namespace CryptographyInDotNet
 
             try
             {
-                var encryptedBlock = hybrid.EncryptData(Encoding.UTF8.GetBytes(original), rsaParams, 
-                                                        digitalSignature);
+                var encryptedBlock = hybrid.EncryptData(
+					Encoding.UTF8.GetBytes(original), rsaParams, digitalSignature);
 
                 var decrpyted = hybrid.DecryptData(encryptedBlock, rsaParams, digitalSignature);
 
